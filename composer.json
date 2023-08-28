@@ -40,11 +40,10 @@
   "extra": {
     "thanks": {
       "name": "flagception/flagception",
-      "url": "https://github.com/bestit/flagception-sdk"
+      "url": "https://github.com/playox/flagception-sdk"
     }
   },
   "suggest": {
-    "flagception/contentful-activator": "Fetch feature flags from contentful.",
     "flagception/database-activator": "Fetch feature flags from a database."
   },
   "scripts": {
