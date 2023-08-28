@@ -1,0 +1,42 @@
+name: ci
+
+on:
+    push:
+        branches: [ master ]
+    pull_request:
+        branches: [ master ]
+
+jobs:
+    build:
+        strategy:
+            matrix:
+                php: ['7.2','7.3','7.4','8.0', '8.1', '8.2']
+                symfony: ['5.4', '6.3']
+                exclude:
+                  - php: 7.2
+                    symfony: 6.3
+                  - php: 7.3
+                    symfony: 6.3
+                  - php: 7.4
+                    symfony: 6.3
+                  - php: 8.0
+                    symfony: 6.3
+
+
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v2
+
+            - uses: shivammathur/setup-php@v2
+              with:
+                php-version: ${{ matrix.php }}
+                tools: composer
+                coverage: none
+            - name: Setup Dependencies
+              run: composer require "symfony/symfony:${{ matrix.symfony }}" --no-update
+            - name: Install dependencies
+              run: composer install --prefer-dist --no-progress
+
+            - name: run tests
+              run: ./vendor/bin/simple-phpunit

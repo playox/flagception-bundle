@@ -21,7 +21,7 @@ class RoutingMetadataSubscriber implements EventSubscriberInterface
      *
      * @var string
      */
-    const FEATURE_KEY = '_feature';
+    public const FEATURE_KEY = '_feature';
 
     /**
      * The feature manager

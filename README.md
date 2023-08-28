@@ -4,7 +4,7 @@ This bundle integrates the [Flagception PHP Libary](https://packagist.org/packag
 
 [![Latest Stable Version](https://poser.pugx.org/flagception/flagception-bundle/v/stable)](https://packagist.org/packages/flagception/flagception-bundle)
 [![Coverage Status](https://coveralls.io/repos/github/bestit/flagception-bundle/badge.svg?branch=master)](https://coveralls.io/github/bestit/flagception-bundle?branch=master)
-[![Build Status](https://travis-ci.org/bestit/flagception-bundle.svg?branch=master)](https://travis-ci.org/bestit/flagception-bundle)
+[![Build Status](https://github.com/playox/flagception-bundle/actions/workflows/php.yml/badge.svg)](https://github.com/playox/flagception-bundle/actions)
 [![Total Downloads](https://poser.pugx.org/flagception/flagception-bundle/downloads)](https://packagist.org/packages/flagception/flagception-bundle)
 [![License](https://poser.pugx.org/flagception/flagception-bundle/license)](https://packagist.org/packages/flagception/flagception-bundle)
 
