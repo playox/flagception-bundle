@@ -11,7 +11,7 @@
       <directory>src/*/Bundle/*Bundle/Resources</directory>
     </exclude>
     <report>
-      <clover outputFile="./build/logs/clover.xml"/>
+      <clover outputFile="clover.xml"/>
     </report>
   </coverage>
   <php>
