@@ -2,6 +2,7 @@
 
 namespace Flagception\Bundle\FlagceptionBundle\Profiler;
 
+use Flagception\Activator\ChainActivator;
 use Flagception\Bundle\FlagceptionBundle\Activator\TraceableChainActivator;
 use Flagception\Decorator\ChainDecorator;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,7 +38,7 @@ class FeatureDataCollector extends DataCollector
      * @param TraceableChainActivator $chainActivator
      * @param ChainDecorator $chainDecorator
      */
-    public function __construct(TraceableChainActivator $chainActivator, ChainDecorator $chainDecorator)
+    public function __construct(ChainActivator $chainActivator, ChainDecorator $chainDecorator)
     {
         $this->chainActivator = $chainActivator;
         $this->chainDecorator = $chainDecorator;
@@ -58,7 +59,7 @@ class FeatureDataCollector extends DataCollector
             'requests' => [],
             'activators' => [],
             'decorators' => [],
-            'trace' => $this->chainActivator->getTrace()
+            'trace' => []
         ];
 
         // Activators
@@ -85,6 +86,12 @@ class FeatureDataCollector extends DataCollector
         }
 
         // Analyze trace
+        if (!$this->chainActivator instanceof TraceableChainActivator) {
+            return;
+        }
+
+        $this->data['trace'] = $this->chainActivator->getTrace();
+
         foreach ($this->chainActivator->getTrace() as $trace) {
             if (!isset($this->data['requests'][$trace['feature']])) {
                 $this->data['requests'][$trace['feature']] = [
