@@ -17,7 +17,7 @@ class ContextDecoratorPass implements CompilerPassInterface
     /**
      * {@inheritdoc}
      */
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         $bag = $container->getDefinition('flagception.decorator.chain_decorator');
 
