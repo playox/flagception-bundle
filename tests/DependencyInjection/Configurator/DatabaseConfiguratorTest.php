@@ -4,7 +4,6 @@ namespace Flagception\Tests\FlagceptionBundle\DependencyInjection\Configurator;
 
 use Flagception\Bundle\FlagceptionBundle\DependencyInjection\Configurator\DatabaseConfigurator;
 use Flagception\Bundle\FlagceptionBundle\DependencyInjection\FlagceptionExtension;
-use LogicException;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

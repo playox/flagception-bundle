@@ -156,7 +156,7 @@ class FeatureDataCollector extends DataCollector
      */
     public function getActivators(): array
     {
-        return $this->data['activators'];
+        return $this->data['activators'] ?? [];
     }
 
     /**
@@ -166,7 +166,7 @@ class FeatureDataCollector extends DataCollector
      */
     public function getDecorators(): array
     {
-        return $this->data['decorators'];
+        return $this->data['decorators'] ?? [];
     }
 
     /**
@@ -176,7 +176,7 @@ class FeatureDataCollector extends DataCollector
      */
     public function getTrace(): array
     {
-        return $this->data['trace'];
+        return $this->data['trace'] ?? [];
     }
 
     /**
@@ -186,7 +186,7 @@ class FeatureDataCollector extends DataCollector
      */
     public function getSummary(): array
     {
-        return $this->data['summary'];
+        return $this->data['summary'] ?? [];
     }
 
     /**
