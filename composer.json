@@ -2,7 +2,7 @@
   "name": "flagception/flagception-bundle",
   "type": "symfony-bundle",
   "description": "Feature toggle bundle on steroids.",
-  "keywords": ["feature", "feature-toggle", "feature-flags", "flags", "flagception", "symfony", "bundle", "rollout", "testing", "toggle"],
+  "keywords": ["feature", "feature-toggle", "feature-flags", "flags", "flagception", "symfony", "bundle", "rollout", "toggle"],
   "license": "MIT",
   "authors": [
     {
