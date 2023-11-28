@@ -41,6 +41,7 @@ class FeatureDataCollectorTest extends TestCase
     {
         $collector = new FeatureDataCollector(new TraceableChainActivator(), new ChainDecorator());
         $collector->reset();
+        static::assertEquals([], $collector->getActivators());
     }
 
     /**
