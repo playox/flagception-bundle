@@ -17,7 +17,7 @@ class ExpressionProviderPass implements CompilerPassInterface
     /**
      * {@inheritdoc}
      */
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         $factory = $container->getDefinition('flagception.factory.expression_language_factory');
 
