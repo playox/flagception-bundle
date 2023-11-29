@@ -1,0 +1,44 @@
+name: ci
+
+on:
+    push:
+        branches: [ master ]
+jobs:
+    coverage:
+        strategy:
+            matrix:
+                php: ['8.3']
+                symfony: ['6.3']
+
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v3
+
+            - uses: shivammathur/setup-php@v2
+              with:
+                php-version: ${{ matrix.php }}
+                tools: composer
+                coverage: xdebug
+            - name: Setup Dependencies
+              run: composer require "symfony/symfony:${{ matrix.symfony }}" --no-update
+            - name: Install dependencies
+              run: composer install --prefer-dist --no-progress
+
+            - name: run tests
+              run: ./vendor/bin/simple-phpunit
+
+            - name: Make code coverage badge
+              uses: timkrase/phpunit-coverage-badge@v1.2.1
+              with:
+                coverage_badge_path: output/coverage.svg
+                push_badge: false
+
+            - name: Git push to image-data branch
+              uses: peaceiris/actions-gh-pages@v3
+              with:
+                publish_dir: ./output
+                publish_branch: image-data
+                github_token: ${{ secrets.GITHUB_TOKEN }}
+                user_name: 'github-actions[bot]'
+                user_email: 'github-actions[bot]@users.noreply.github.com'
