@@ -121,7 +121,7 @@ class RoutingMetadataSubscriberTest extends TestCase
             $this->createMock(HttpKernelInterface::class),
             [$this, 'testFeatureIsActive'],
             $request,
-            HttpKernelInterface::MASTER_REQUEST
+            1 /* HttpKernelInterface::MAIN_REQUEST */
         );
     }
 
@@ -142,7 +142,7 @@ class RoutingMetadataSubscriberTest extends TestCase
                 return new Response();
             },
             $request,
-            HttpKernelInterface::MASTER_REQUEST
+            1 /* HttpKernelInterface::MAIN_REQUEST */
         );
 
         $manager = $this->createMock(FeatureManagerInterface::class);
@@ -171,7 +171,7 @@ class RoutingMetadataSubscriberTest extends TestCase
                 return new Response();
             },
             $request,
-            HttpKernelInterface::MASTER_REQUEST
+            1 /* HttpKernelInterface::MAIN_REQUEST */
         );
 
         $manager = $this->createMock(FeatureManagerInterface::class);

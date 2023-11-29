@@ -74,8 +74,17 @@ class AnnotationSubscriberTest extends TestCase
      */
     public function testOnClassIsActive()
     {
+        $calls = [];
         $manager = $this->createMock(FeatureManagerInterface::class);
-        $manager->method('isActive')->with('feature_abc')->willReturn(true);
+        $manager->method('isActive')->willReturnCallback(function ($name) use (&$calls) {
+            switch ($name) {
+                case 'feature_abc':
+                    $calls[] = $name;
+                    return true;
+                default:
+                    throw new \InvalidArgumentException('invalid feature call');
+            }
+        });
 
         $event = $this->createControllerEvent([
             new AnnotationTestClass(),
@@ -84,6 +93,8 @@ class AnnotationSubscriberTest extends TestCase
 
         $subscriber = new AnnotationSubscriber(new AnnotationReader(), $manager);
         $subscriber->onKernelController($event);
+
+        self::assertEquals(['feature_abc'], $calls);
     }
 
     /**
@@ -114,11 +125,19 @@ class AnnotationSubscriberTest extends TestCase
      */
     public function testOnMethodIsActive()
     {
+        $calls = [];
+
         $manager = $this->createMock(FeatureManagerInterface::class);
-        $manager
-            ->method('isActive')
-            ->withConsecutive(['feature_abc'], ['feature_def'])
-            ->willReturnOnConsecutiveCalls(true, true);
+        $manager->method('isActive')->willReturnCallback(function ($name) use (&$calls) {
+            switch ($name) {
+                case 'feature_def':
+                case 'feature_abc':
+                    $calls[] = $name;
+                    return true;
+                default:
+                    throw new \InvalidArgumentException('invalid feature call');
+            }
+        });
 
         $event = $this->createControllerEvent([
             new AnnotationTestClass(),
@@ -127,6 +146,8 @@ class AnnotationSubscriberTest extends TestCase
 
         $subscriber = new AnnotationSubscriber(new AnnotationReader(), $manager);
         $subscriber->onKernelController($event);
+
+        self::assertEquals(['feature_abc', 'feature_def'], $calls);
     }
 
     /**
@@ -166,7 +187,7 @@ class AnnotationSubscriberTest extends TestCase
             $this->createMock(HttpKernelInterface::class),
             $controller,
             new Request(),
-            HttpKernelInterface::MASTER_REQUEST
+            1 /* HttpKernelInterface::MAIN_REQUEST */
         );
     }
 }
