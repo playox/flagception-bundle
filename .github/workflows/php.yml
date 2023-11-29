@@ -5,7 +5,6 @@ on:
         branches: [ master ]
     pull_request:
         types: [opened, synchronize]
-
 jobs:
     build:
         strategy:
@@ -46,7 +45,7 @@ jobs:
     coverage:
         strategy:
             matrix:
-                php: ['8.2']
+                php: ['8.3']
                 symfony: ['6.3']
 
         runs-on: ubuntu-latest
@@ -72,12 +71,3 @@ jobs:
               with:
                 coverage_badge_path: output/coverage.svg
                 push_badge: false
-
-            - name: Git push to image-data branch
-              uses: peaceiris/actions-gh-pages@v3
-              with:
-                publish_dir: ./output
-                publish_branch: image-data
-                github_token: ${{ secrets.GITHUB_TOKEN }}
-                user_name: 'github-actions[bot]'
-                user_email: 'github-actions[bot]@users.noreply.github.com'
