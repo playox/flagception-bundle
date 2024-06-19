@@ -89,3 +89,15 @@ services:
         tags:
             - { name: kernel.event_subscriber }
         public: true
+
+    flagception.route.is_feature:
+        class: Flagception\Bundle\FlagceptionBundle\Route\IsFeature
+        arguments:
+            - '@flagception.manager.feature_manager'
+
+    flagception.route.expression_language_function.is_feature:
+        class: \Closure
+        factory: [ \Closure, 'fromCallable' ]
+        arguments: [ [ '@flagception.route.is_feature', '__invoke' ] ]
+        tags:
+            - { name: 'routing.expression_language_function', function: 'is_feature' }
