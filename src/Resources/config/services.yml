@@ -81,3 +81,11 @@ services:
         tags:
             - { name: kernel.event_subscriber }
         public: true
+
+    flagception.listener.attribute_subscriber:
+        class: Flagception\Bundle\FlagceptionBundle\Listener\AttributeSubscriber
+        arguments:
+            - '@flagception.manager.feature_manager'
+        tags:
+            - { name: kernel.event_subscriber }
+        public: true
