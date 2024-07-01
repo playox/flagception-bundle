@@ -25,6 +25,7 @@ Documentation
 * [Usage](docs/usage.md)
 * [Twig flags](docs/twig.md)
 * [Route flags](docs/route.md)
+* [Route condition flags](docs/route_condition.md)
 * [Attribute flags](docs/attribute.md)
 * [Annotation flags](docs/annotation.md)
 * [Constraints](docs/constraint.md)
