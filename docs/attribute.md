@@ -9,12 +9,6 @@ flagception:
     features:      
         feature_123:
             default: true
-        
-    # Use annotation? (optional)
-    annotation:
-    
-        # Enable controller annotation (default: false)
-        enable: true
 ```
 
 
