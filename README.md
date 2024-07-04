@@ -8,10 +8,11 @@ This bundle integrates the [Flagception PHP Library](https://packagist.org/packa
 [![Total Downloads](https://poser.pugx.org/flagception/flagception-bundle/downloads)](https://packagist.org/packages/flagception/flagception-bundle)
 [![License](https://poser.pugx.org/flagception/flagception-bundle/license)](https://packagist.org/packages/flagception/flagception-bundle)
 
-| Bundle Version (Tag) | Support Symfony | Branch |
-|----------------------|-----------------|--------|
-| <=3                  | 2.7 - 4.4       | 3.x    |
-| >=4                  | 4.4 - current   | master |
+| Bundle Version (Tag) | Support Symfony | 
+|----------------------|-----------------|
+| <=3                  | 2.7 - 4.4       | 
+| >=4                  | 4.4 - 7.4       |
+| >=5                  | 4.4 - current   | 
 
 ```console
 $ composer require flagception/flagception-bundle
@@ -22,6 +23,7 @@ Documentation
 * [Installation](docs/install.md)
 * [Upgrade from 2.x](UPGRADE-3.0.md)
 * [Upgrade from 3.x](UPGRADE-4.0.md)
+* [Upgrade from 4.x](UPGRADE-5.0.md)
 * [Usage](docs/usage.md)
 * [Twig flags](docs/twig.md)
 * [Route flags](docs/route.md)
