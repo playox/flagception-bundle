@@ -1,3 +1,11 @@
+## [5.0.0]
+### Added
+- \#3 Support for PHP8 attributes @axwel13
+- Support for route condition expression @axwel13
+
+### Changed
+- Change minimum php version to 8.0 @axwel13
+
 ## [4.1.0]
 ### Added
 - \#80 Support for multiple features in route definition @ajgarlag
