@@ -64,16 +64,6 @@ services:
         public: false
 
     # Maybe removed by your configuration
-    flagception.listener.annotation_subscriber:
-        class: Flagception\Bundle\FlagceptionBundle\Listener\AnnotationSubscriber
-        arguments:
-            - '@annotations.reader'
-            - '@flagception.manager.feature_manager'
-        tags:
-            - { name: kernel.event_subscriber }
-        public: true
-
-    # Maybe removed by your configuration
     flagception.listener.routing_metadata_subscriber:
         class: Flagception\Bundle\FlagceptionBundle\Listener\RoutingMetadataSubscriber
         arguments:

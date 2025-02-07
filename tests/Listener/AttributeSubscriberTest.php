@@ -2,7 +2,6 @@
 
 namespace Flagception\Tests\FlagceptionBundle\Listener;
 
-use Doctrine\Common\Annotations\AnnotationReader;
 use Flagception\Bundle\FlagceptionBundle\Listener\AttributeSubscriber;
 use Flagception\Manager\FeatureManagerInterface;
 use Flagception\Tests\FlagceptionBundle\Fixtures\Helper\AttributeTestClass;
@@ -15,7 +14,7 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
- * Class AnnotationSubscriberTest
+ * Class AttributeSubscriberTest
  *
  * @author Michel Chowanski <michel.chowanski@bestit-online.de>
  * @package Flagception\Tests\FlagceptionBundle\Listener

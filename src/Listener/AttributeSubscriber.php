@@ -13,7 +13,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
- * Class AnnotationSubscriber
+ * Class AttributeSubscriber
  *
  * @author Michel Chowanski <michel.chowanski@bestit-online.de>
  * @package Flagception\Bundle\FlagceptionBundle\Listener
