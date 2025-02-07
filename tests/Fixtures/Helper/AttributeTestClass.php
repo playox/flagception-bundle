@@ -5,7 +5,7 @@ namespace Flagception\Tests\FlagceptionBundle\Fixtures\Helper;
 use Flagception\Bundle\FlagceptionBundle\Attribute\Feature;
 
 /**
- * Class AnnotationTestClass
+ * Class AttributeTestClass
  *
  * @author Michel Chowanski <michel.chowanski@bestit-online.de>
  * @package Flagception\Tests\FlagceptionBundle\Fixtures\Helper

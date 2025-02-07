@@ -33,11 +33,6 @@ class FlagceptionExtension extends Extension
         $configuration = new Configuration($configurators);
         $config = $this->processConfiguration($configuration, $configs);
 
-        // Enable / disable annotation subscriber
-        if ($config['annotation']['enable'] === false) {
-            $container->removeDefinition('flagception.listener.annotation_subscriber');
-        }
-
         // Enable / disable routing metadata subscriber
         if ($config['routing_metadata']['enable'] === false) {
             $container->removeDefinition('flagception.listener.routing_metadata_subscriber');

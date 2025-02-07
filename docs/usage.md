@@ -87,21 +87,16 @@ class BlogController extends Controller
 }
 ```
 
-##### Annotation usage
+##### Attribute usage
 ```php
 # FooController.php
 
-use Flagception\Bundle\FlagceptionBundle\Annotations\Feature;
+use Flagception\Bundle\FlagceptionBundle\Attribute\Feature;
 
-/**
- * @Feature("feature_123")
- */
+#[Feature("feature_123")]
 class FooController
 {
-
-    /**
-     * @Feature("feature_789")
-     */
+    #[Feature("feature_789")]
     public function barAction()
     {
     }
@@ -112,9 +107,7 @@ class FooController
 }
 ```
 
-If you request an action with inactive feature flag, you will get a `NotFoundHttpException`.
-
-Take a look to the detail documentation for [Twig](twig.md), [Route](route.md) or [Annotation](annotation.md) usage.
+Take a look to the detail documentation for [Twig](twig.md), [Route](route.md) or [Attribute](attribute.md) usage.
 
 ##### Feature names
 You can name your features as you like. But we recommend using [snake case](https://en.wikipedia.org/wiki/Snake_case).

@@ -38,65 +38,6 @@ class FlagceptionExtensionTest extends TestCase
     }
 
     /**
-     * Test that annotation subscriber is disabled
-     *
-     * @return void
-     */
-    public function testAnnotationSubscriberDisabled()
-    {
-        $config = [];
-
-        $extension = new FlagceptionExtension();
-        $extension->load($config, $this->container);
-
-        static::assertFalse($this->container->hasDefinition('flagception.listener.annotation_subscriber'));
-    }
-
-    /**
-     * Test that annotation subscriber is enabled
-     *
-     * @return void
-     */
-    public function testAnnotationSubscriberEnabled()
-    {
-        $config = [
-            [
-                'annotation' => [
-                    'enable' => true
-                ]
-            ]
-        ];
-
-        $extension = new FlagceptionExtension();
-        $extension->load($config, $this->container);
-
-        $definition = $this->container->getDefinition('flagception.listener.annotation_subscriber');
-        static::assertTrue($definition->hasTag('kernel.event_subscriber'));
-    }
-
-    /**
-     * Test that annotation subscriber is enabled by string
-     *
-     * @return void
-     */
-    public function testAnnotationSubscriberEnabledByString()
-    {
-        $config = [
-            [
-                'annotation' => [
-                    'enable' => 'true'
-                ]
-            ]
-        ];
-
-        $extension = new FlagceptionExtension();
-        $extension->load($config, $this->container);
-
-        $definition = $this->container->getDefinition('flagception.listener.annotation_subscriber');
-        static::assertTrue($definition->hasTag('kernel.event_subscriber'));
-    }
-
-    /**
      * Test that routing metadata subscriber is disabled
      *
      * @return void

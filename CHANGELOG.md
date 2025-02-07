@@ -1,3 +1,7 @@
+## [x.x.x]
+### Removed
+- \#27 Remove deprecated `doctrine/annotations` implementation
+
 ## [5.0.0]
 ### Added
 - \#3 Support for PHP8 attributes @axwel13
