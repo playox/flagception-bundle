@@ -23,7 +23,7 @@ class TraceableChainActivator extends ChainActivator
     /**
      * {@inheritdoc}
      */
-    public function isActive($name, Context $context): bool
+    public function isActive($name, ?Context $context): bool
     {
         $stack = [];
         $result = false;
@@ -52,7 +52,7 @@ class TraceableChainActivator extends ChainActivator
      *
      * @return array
      */
-    public function getTrace()
+    public function getTrace(): array
     {
         return $this->trace;
     }
