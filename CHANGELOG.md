@@ -1,6 +1,12 @@
-## [x.x.x]
+## [6.0.0]
 ### Removed
 - \#27 Remove deprecated `doctrine/annotations` implementation
+
+### Changed
+- Update to Flagception SDK Version ^2.0 @migo315
+
+### Fix
+- Fix deprecations @calderholding-r
 
 ## [5.0.0]
 ### Added
