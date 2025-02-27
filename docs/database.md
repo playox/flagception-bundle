@@ -40,7 +40,7 @@ flagception:
             enable: true
             
             # Connection string
-            url: 'mysql://user:secret@localhost/mydb'
+            url: 'pdo-mysql://user:secret@localhost/mydb'
 ```
 
 You can fill a connection string (url), a PDO instance, a DBAL instance or old-fashioned the individual
@@ -58,22 +58,7 @@ flagception:
             enable: true
             
             # Connection string
-            url: 'mysql://user:secret@localhost/mydb'
-```
-
-###### PDO instance:
-```yml
-# config.yml
-
-flagception:
-    activators:     
-        database:
-            
-            # Enable database activator (default: false)
-            enable: true
-            
-            # By pdo instance
-            pdo: 'pdo.service.id'
+            url: 'pdo-mysql://user:secret@localhost/mydb'
 ```
 
 ###### DBAL instance:
