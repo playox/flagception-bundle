@@ -2,8 +2,11 @@
 
 namespace Flagception\Tests\FlagceptionBundle\DependencyInjection\Configurator;
 
+use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\DriverManager;
 use Flagception\Bundle\FlagceptionBundle\DependencyInjection\Configurator\DatabaseConfigurator;
 use Flagception\Bundle\FlagceptionBundle\DependencyInjection\FlagceptionExtension;
+use Flagception\Database\Activator\DatabaseActivator;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -97,7 +100,7 @@ class DatabaseConfiguratorTest extends TestCase
                 'activators' => [
                     'database' => [
                         'enable' => true,
-                        'url' => 'mysql://foo'
+                        'url' => 'pdo-sqlite://:memory:'
                     ]
                 ]
             ]
@@ -106,6 +109,11 @@ class DatabaseConfiguratorTest extends TestCase
         $extension->load($config, $this->container);
 
         static::assertTrue($this->container->hasDefinition('flagception.activator.database_activator'));
+
+        /** @var DatabaseActivator $activator */
+        $activator = $this->container->get('flagception.activator.database_activator');
+
+        static::assertInstanceOf(Connection::class, $activator->getConnection());
     }
 
     /**
@@ -120,7 +128,7 @@ class DatabaseConfiguratorTest extends TestCase
                 'activators' => [
                     'database' => [
                         'enable' => 'true',
-                        'url' => 'mysql://foo'
+                        'url' => 'pdo-sqlite://:memory:'
                     ]
                 ]
             ]
@@ -129,6 +137,11 @@ class DatabaseConfiguratorTest extends TestCase
         $extension->load($config, $this->container);
 
         static::assertTrue($this->container->hasDefinition('flagception.activator.database_activator'));
+
+        /** @var DatabaseActivator $activator */
+        $activator = $this->container->get('flagception.activator.database_activator');
+
+        static::assertInstanceOf(Connection::class, $activator->getConnection());
     }
 
     /**
@@ -144,7 +157,7 @@ class DatabaseConfiguratorTest extends TestCase
                     'database' => [
                         'enable' => true,
                         'priority' => 10,
-                        'url' => 'mysql://foo'
+                        'url' => 'pdo-sqlite://:memory:'
                     ]
                 ]
             ]
@@ -154,6 +167,11 @@ class DatabaseConfiguratorTest extends TestCase
 
         $definition = $this->container->getDefinition('flagception.activator.database_activator');
         static::assertEquals(10, $definition->getTag('flagception.activator')[0]['priority']);
+
+        /** @var DatabaseActivator $activator */
+        $activator = $this->container->get('flagception.activator.database_activator');
+
+        static::assertInstanceOf(Connection::class, $activator->getConnection());
     }
 
     /**
@@ -168,7 +186,7 @@ class DatabaseConfiguratorTest extends TestCase
                 'activators' => [
                     'database' => [
                         'enable' => true,
-                        'url' => 'mysql://foo'
+                        'url' => 'pdo-sqlite://:memory:'
                     ]
                 ]
             ]
@@ -177,29 +195,11 @@ class DatabaseConfiguratorTest extends TestCase
         $extension->load($config, $this->container);
 
         static::assertTrue($this->container->hasDefinition('flagception.activator.database_activator'));
-    }
 
-    /**
-     * Test set activator by pdo
-     *
-     * @return void
-     */
-    public function testActivatorByPdo()
-    {
-        $config = [
-            [
-                'activators' => [
-                    'database' => [
-                        'enable' => true,
-                        'pdo' => 'my.pdo.service'
-                    ]
-                ]
-            ]
-        ];
-        $extension = new FlagceptionExtension();
-        $extension->load($config, $this->container);
+        /** @var DatabaseActivator $activator */
+        $activator = $this->container->get('flagception.activator.database_activator');
 
-        static::assertTrue($this->container->hasDefinition('flagception.activator.database_activator'));
+        static::assertInstanceOf(Connection::class, $activator->getConnection());
     }
 
     /**
@@ -209,6 +209,14 @@ class DatabaseConfiguratorTest extends TestCase
      */
     public function testActivatorByDbal()
     {
+        $this->container->set('my.dbal.service', DriverManager::getConnection([
+            'dbname' => 'mydb',
+            'user' => 'user',
+            'password' => 'secret',
+            'host' => 'localhost',
+            'driver' => 'pdo_mysql'
+        ]));
+
         $config = [
             [
                 'activators' => [
@@ -219,10 +227,16 @@ class DatabaseConfiguratorTest extends TestCase
                 ]
             ]
         ];
+
         $extension = new FlagceptionExtension();
         $extension->load($config, $this->container);
 
         static::assertTrue($this->container->hasDefinition('flagception.activator.database_activator'));
+
+        /** @var DatabaseActivator $activator */
+        $activator = $this->container->get('flagception.activator.database_activator');
+
+        static::assertInstanceOf(Connection::class, $activator->getConnection());
     }
 
     /**
@@ -252,6 +266,11 @@ class DatabaseConfiguratorTest extends TestCase
         $extension->load($config, $this->container);
 
         static::assertTrue($this->container->hasDefinition('flagception.activator.database_activator'));
+
+        /** @var DatabaseActivator $activator */
+        $activator = $this->container->get('flagception.activator.database_activator');
+
+        static::assertInstanceOf(Connection::class, $activator->getConnection());
     }
 
     /**
@@ -280,6 +299,11 @@ class DatabaseConfiguratorTest extends TestCase
         $extension->load($config, $this->container);
 
         $this->container->hasDefinition('flagception.activator.database_activator');
+
+        /** @var DatabaseActivator $activator */
+        $activator = $this->container->get('flagception.activator.database_activator');
+
+        static::assertInstanceOf(Connection::class, $activator->getConnection());
     }
 
     /**
@@ -318,7 +342,7 @@ class DatabaseConfiguratorTest extends TestCase
                 'activators' => [
                     'database' => [
                         'enable' => true,
-                        'url' => 'foo'
+                        'url' => 'pdo-sqlite://:memory:'
                     ]
                 ]
             ]
@@ -341,7 +365,7 @@ class DatabaseConfiguratorTest extends TestCase
                 'activators' => [
                     'database' => [
                         'enable' => true,
-                        'url' => 'foo',
+                        'url' => 'pdo-sqlite://:memory:',
                         'cache' => [
                             'enable' => true
                         ]
@@ -359,6 +383,11 @@ class DatabaseConfiguratorTest extends TestCase
             'flagception.activator.database_activator',
             $definition->getDecoratedService()[0]
         );
+
+        /** @var DatabaseActivator $activator */
+        $activator = $this->container->get('flagception.activator.database_activator');
+
+        static::assertInstanceOf(Connection::class, $activator->getConnection());
     }
 
     /**
@@ -373,7 +402,7 @@ class DatabaseConfiguratorTest extends TestCase
                 'activators' => [
                     'database' => [
                         'enable' => true,
-                        'url' => 'foo',
+                        'url' => 'pdo-sqlite://:memory:',
                         'cache' => [
                             'enable' => 'true'
                         ]
@@ -385,5 +414,10 @@ class DatabaseConfiguratorTest extends TestCase
         $extension->load($config, $this->container);
 
         static::assertTrue($this->container->hasDefinition('flagception.activator.database_activator.cache'));
+
+        /** @var DatabaseActivator $activator */
+        $activator = $this->container->get('flagception.activator.database_activator');
+
+        static::assertInstanceOf(Connection::class, $activator->getConnection());
     }
 }

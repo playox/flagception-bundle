@@ -1,9 +1,11 @@
 ## [6.0.0]
 ### Removed
-- \#27 Remove deprecated `doctrine/annotations` implementation
+- \#27 Remove deprecated `doctrine/annotations` implementation @migo315
+- Support for pdo instance for database-activator dropped @migo315
 
 ### Changed
 - Update to Flagception SDK Version ^2.0 @migo315
+- Update to Flagception Database Activator Version ^2.0 @migo315
 
 ### Fix
 - Fix deprecations @calderholding-r

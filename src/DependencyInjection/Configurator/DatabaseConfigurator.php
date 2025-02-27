@@ -43,10 +43,8 @@ class DatabaseConfigurator implements ActivatorConfiguratorInterface
         $credentials = null;
         if (isset($config['dbal'])) {
             $credentials = new Reference($config['dbal']);
-        } elseif (isset($config['pdo'])) {
-            $credentials = ['pdo' => new Reference($config['pdo'])];
         } elseif (isset($config['url'])) {
-            $credentials = ['url' => $config['url']];
+            $credentials = $config['url'];
         } else {
             $credentials = $config['credentials'];
         }
@@ -81,11 +79,10 @@ class DatabaseConfigurator implements ActivatorConfiguratorInterface
             ->validate()
                 ->ifTrue(function ($config) {
                     return !isset($config['url'])
-                        && !isset($config['pdo'])
                         && !isset($config['dbal'])
                         && !isset($config['credentials']);
                 })
-                ->thenInvalid('You must either set the url, pdo, dbal or credentials field.')
+                ->thenInvalid('You must either set the url, dbal or credentials field.')
             ->end()
             ->children()
                 ->booleanNode('enable')
@@ -102,9 +99,6 @@ class DatabaseConfigurator implements ActivatorConfiguratorInterface
                 ->end()
                 ->scalarNode('url')
                     ->info('Connection string for the database')
-                ->end()
-                ->scalarNode('pdo')
-                    ->info('Service with pdo instance')
                 ->end()
                 ->scalarNode('dbal')
                     ->info('Service with dbal instance')
