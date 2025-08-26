@@ -7,9 +7,9 @@ use Flagception\Activator\FeatureActivatorInterface;
 use Flagception\Bundle\FlagceptionBundle\Activator\TraceableChainActivator;
 use Flagception\Bundle\FlagceptionBundle\DependencyInjection\Configurator\ActivatorConfiguratorInterface;
 use Flagception\Decorator\ContextDecoratorInterface;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
 /**
