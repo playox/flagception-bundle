@@ -88,4 +88,4 @@ the given context.
 
 Credits
 -------------------------
-Profiler icon from https://github.com/ionic-team/ionicons
+Profiler icon from https://github.com/tabler/tabler-icons
